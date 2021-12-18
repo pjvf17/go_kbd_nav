@@ -1,6 +1,6 @@
 {
   "name": "ogs-kbd-nav",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "OGS Keyboard Navigation to the max.",
   "keywords": [
     "productivity",
@@ -13,21 +13,25 @@
     "바둑",
     "围棋"
   ],
-  "author": "Philippe Fanaro",
+  "author": "Philippe Fanaro, Pascal von Fintel",
   "license": "ISC",
   "main": "dist/content.js",
   "scripts": {
     "build": "webpack",
     "test": "jest ./dist/dev",
-    "testwatch": "jest --watchAll ./dist/dev"
+    "testwatch": "jest --watchAll ./dist/dev",
+    "start:firefox": "web-ext run --source-dir ./dist/prod",
+    "webbuild": "web-ext build --source-dir ./dist/prod --overwrite-dest",
+    "sign": "web-ext sign --api-key user:17187266:552 --api-secret a8304f03abf01ef6c0e2e740b1299eda2d06c33f773e1a56e30bc365f73d49cb --source-dir ./dist/prod"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.15",
-    "jest": "^26.6.2",
-    "ts-jest": "^26.4.3",
-    "ts-loader": "^8.0.10",
-    "typescript": "^4.0.5",
-    "webpack": "^5.4.0",
-    "webpack-cli": "^4.2.0"
+    "@types/jest": "^26.0.24",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.6",
+    "ts-loader": "^8.3.0",
+    "typescript": "^4.5.4",
+    "web-ext": "^6.6.0",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   }
 }

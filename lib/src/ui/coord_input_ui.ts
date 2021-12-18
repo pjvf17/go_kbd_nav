@@ -16,7 +16,6 @@ export default class CoordInputUi {
     this.style();
     this.builtInValidation();
     this.coordInput.onchange = this.onChange;
-
     const rightColDiv: HTMLDivElement = document.querySelector(
       "div.right-col"
     ) as HTMLDivElement;
@@ -47,7 +46,7 @@ export default class CoordInputUi {
   private builtInValidation = (): void => {
     this.coordInput.minLength = 2;
     this.coordInput.maxLength = 3;
-    this.coordInput.pattern = "[A-T|a-t][0-1]?[0-9]";
+    this.coordInput.pattern = "[a-t][0-1]?[0-9]";
   };
 
   toggle = (): void => {
@@ -56,9 +55,19 @@ export default class CoordInputUi {
       this.coordInputDiv.removeChild(this.coordInput);
     } else {
       this.coordInputDiv.append(this.coordInput);
+      // Erase any input
+      this.coordInput.value = "";
       this.coordInput.focus();
     }
   };
+
+  // Added for 'Escape' key to work
+  disable = (): void => {
+    if (document.activeElement == this.coordInput) {
+      this.coordInput.blur();
+      this.coordInputDiv.removeChild(this.coordInput);
+    }
+  }
 
   get isFocused(): boolean {
     return document.activeElement == this.coordInput;
@@ -68,7 +77,7 @@ export default class CoordInputUi {
     if (this.coordInput.validity.patternMismatch) {
       this.coordInput.setCustomValidity(
         `A coordinate is composed by 
-         a letter from A to T (upper or lowercase) 
+         a letter from a to t (lowercase) 
          and a number from 1 to 19.`
       );
     } else {

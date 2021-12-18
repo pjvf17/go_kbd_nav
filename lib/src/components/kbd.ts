@@ -1,6 +1,7 @@
 import { Direction } from "../ui/stone_marker_ui";
 import Ui from "../ui/ui";
 import Config from "./config";
+import CoordInputUi from "../ui/coord_input_ui";
 
 export default class Kbd {
   private kbdEvt: KeyboardEvent = new KeyboardEvent("keypress");
@@ -51,7 +52,13 @@ export default class Kbd {
     if (this.kbdEvt.ctrlKey) this.ui.aiReview.toggle();
   };
 
-  private toggleCoordInput = (): void => this.ui.coordInputUi?.toggle();
+  private toggleCoordInput = (): void => {
+    if (this.ui.coordInputUi === null) {
+      this.ui.coordInputUi = new CoordInputUi();
+    }
+    this.ui.coordInputUi?.toggle();
+    this.kbdEvt.preventDefault();
+  }
 
   private toggleArrowKeys = (): void => {
     this.config = this.config.toggleArrowKeys();
@@ -66,6 +73,12 @@ export default class Kbd {
   };
 
   private keySwitch = (): void => {
+    // h: up
+    // t: down
+    // u: right
+    // e: left
+    // n: place
+    // s: coord input field
     switch (this.kbdEvt.key) {
       case "b":
         this.toggleCanvas();
@@ -82,32 +95,33 @@ export default class Kbd {
       case ";":
         this.toggleAiReview();
         break;
-      case ".":
-        this.toggleCoordInput();
+      case "n":
+        if(this.anInputIsFocused) {
+          this.toggleCoordInput();
+        }
         break;
-      case ",":
+      case "t":
+        // Dvorak
+        this.moveUp();
         this.cycleGobanSize();
         break;
-      case "d":
+      case "u":
         this.moveRight();
         break;
       case "ArrowRight":
         if (this.config.arrowKeysOn) this.moveRight();
         break;
-      case "s":
+      case "h":
         this.moveDown();
         break;
       case "ArrowDown":
         if (this.config.arrowKeysOn) this.moveDown();
         break;
-      case "a":
+      case "e":
         this.moveLeft();
         break;
       case "ArrowLeft":
         if (this.config.arrowKeysOn) this.moveLeft();
-        break;
-      case "w":
-        this.moveUp();
         break;
       case "ArrowUp":
         if (this.config.arrowKeysOn) this.moveUp();
@@ -115,16 +129,27 @@ export default class Kbd {
       case "Enter":
         this.play();
         break;
-      case "f":
+      case "s":
         this.play();
         break;
-      case "j":
+      case "E":
         this.confirm();
+        break;
+      case "j": 
+        if(!this.ui.coordInputUi?.isFocused) {
+          this.confirm();
+        }
+        break;
+      case "Escape":
+        this.ui.coordInputUi?.disable();
         break;
     }
   };
 
-  private confirm = (): void => this.ui.confirmMove.click();
+  private confirm = (): void => {
+    this.ui.confirmMove.click()
+    this.ui.coordInputUi?.disable();
+  };
 
   private get anInputIsFocused(): boolean {
     return !this.ui.chat.isFocused && !this.ui.coordInputUi?.isFocused;
