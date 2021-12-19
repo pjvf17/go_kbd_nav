@@ -25,7 +25,7 @@ export default class StoneMarkerUi {
   }
 
   private get stoneRatio(): number {
-    return this.stoneMarkerCanvas.width / StoneMarkerUi.defaultCanvasSize /2 ;
+    return this.stoneMarkerCanvas.width / StoneMarkerUi.defaultCanvasSize;
   }
 
   toggleCanvas = (): void => {
@@ -57,15 +57,13 @@ export default class StoneMarkerUi {
     const shadowCanvas: HTMLCanvasElement = document.querySelector(
       StoneMarkerUi.shadowCanvasQuery
     ) as HTMLCanvasElement;
-    const width: number = shadowCanvas.width;
-    const height: number = shadowCanvas.height;
+    const width: number = parseInt(shadowCanvas.style.width);
+    const height: number = parseInt(shadowCanvas.style.height);
 
     this.stoneMarkerCanvas.id = "stone-marker";
     this.stoneMarkerCanvas.style.zIndex = "21";
     this.stoneMarkerCanvas.style.position = "absolute";
     this.stoneMarkerCanvas.style.borderBottom = "red solid";
-    this.stoneMarkerCanvas.style.width = shadowCanvas.style.width;
-    this.stoneMarkerCanvas.style.height = shadowCanvas.style.height;
     this.stoneMarkerCanvas.width = width;
     this.stoneMarkerCanvas.height = height;
   };
@@ -117,9 +115,9 @@ export default class StoneMarkerUi {
 
     context.beginPath();
     context.arc(
-      this.stoneMarker.x*2,
-      this.stoneMarker.y*2,
-      this.stoneMarker.radius*2,
+      this.stoneMarker.x,
+      this.stoneMarker.y,
+      this.stoneMarker.radius,
       0,
       2 * Math.PI
     );
@@ -151,7 +149,7 @@ export default class StoneMarkerUi {
       0,
       null
     );
-    
+
     const gameCanvasQuery: string = "div.Goban > div > canvas#board-canvas";
     const gameCanvas: HTMLCanvasElement = document.querySelector(
       gameCanvasQuery
