@@ -40,7 +40,7 @@ export default class CoordInputUi {
     this.coordInput.style.border = "1px solid green";
     this.coordInput.style.padding = "7.5px";
     this.coordInput.style.paddingLeft = "10px";
-    this.coordInput.style.backgroundColor = "black";
+    this.coordInput.style.backgroundColor = "white";
     this.coordInput.style.bottom = "10px";
   };
 
@@ -103,7 +103,7 @@ export default class CoordInputUi {
   }
 
   private get ratio(): number {
-    return this.gameCanvas.width / 504;
+    return parseInt(this.gameCanvas.style.width) / 504;
   }
 
   private click = (): void => {
