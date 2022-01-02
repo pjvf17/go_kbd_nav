@@ -165,19 +165,20 @@ export default class Kbd {
 
   private moveLeft = (): void => {
     if (this.anInputIsFocused) {
-      this.skipAnalysis();
+      // Disabled this because I couldn't find a reason for it, and it was somehow causing me to pass whenever moving left in a review
+      // this.skipAnalysis();
       this.ui.stoneMarkerUi?.move(Direction.left);
     }
   };
 
-  private skipAnalysis = (): void => {
-    const backToGameButtonQuery: string =
-      "div.analyze-mode-buttons > span > button";
-    const backToGameButton: HTMLButtonElement = document.querySelector(
-      backToGameButtonQuery
-    ) as HTMLButtonElement;
-    backToGameButton?.click();
-  };
+  // private skipAnalysis = (): void => {
+  //   const backToGameButtonQuery: string =
+  //     "div.analyze-mode-buttons > span > button";
+  //   const backToGameButton: HTMLButtonElement = document.querySelector(
+  //     backToGameButtonQuery
+  //   ) as HTMLButtonElement;
+  //   backToGameButton?.click();
+  // };
 
   private moveUp = (): void => {
     if (this.anInputIsFocused) this.ui.stoneMarkerUi?.move(Direction.up);
