@@ -16,11 +16,24 @@ export default class Ui {
   coordInputUi: CoordInputUi | null = null;
 
   constructor() {
-    window.onload = this.onLoad;
+    this.onInit();
     window.onresize = this.onResize
   }
 
-  private onLoad = (_: Event) => {
+  // private onLoad = (_: Event) => {
+  //   const checkExist: NodeJS.Timeout = setInterval(() => {
+  //     if (document.querySelector(StoneMarkerUi.shadowCanvasQuery) != null) {
+  //       this.stoneMarkerUi = new StoneMarkerUi();
+  //       this.coordInputUi = new CoordInputUi();
+  //       this.stoneMarkerUi?.toggleCanvas();
+  //       this.visited = true;
+  //       clearInterval(checkExist);
+  //     }
+  //   }, 100);
+  // };
+  
+  // Found this worked better than onLoad, which wasn't triggering and generating the canvas
+  private onInit = () => {
     const checkExist: NodeJS.Timeout = setInterval(() => {
       if (document.querySelector(StoneMarkerUi.shadowCanvasQuery) != null) {
         this.stoneMarkerUi = new StoneMarkerUi();
