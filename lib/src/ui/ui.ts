@@ -4,6 +4,7 @@ import ConfirmMoveButton from "../components/confirm_move";
 import Logo from "../components/logo";
 import PassButton from "../components/pass";
 import CoordInputUi from "./coord_input_ui";
+import Draggable from "./draggable";
 import StoneMarkerUi from "./stone_marker_ui";
 
 export default class Ui {
@@ -14,9 +15,11 @@ export default class Ui {
   readonly confirmMove: ConfirmMoveButton = new ConfirmMoveButton();
   stoneMarkerUi: StoneMarkerUi | null = null;
   coordInputUi: CoordInputUi | null = null;
+  draggable: Draggable | null = null;
 
   constructor() {
     this.onInit();
+    this.draggable = new Draggable();
     window.onresize = this.onResize
   }
 

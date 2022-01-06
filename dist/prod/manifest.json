@@ -7,7 +7,7 @@
     "content_scripts": [
         {
             "matches": [
-                "*://*.online-go.com/*"
+                "<all_urls>"
             ],
             "js": [
                 "content.js"
