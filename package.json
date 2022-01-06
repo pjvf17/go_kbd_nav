@@ -1,7 +1,7 @@
 {
-  "name": "ogs-kbd-nav",
-  "version": "1.0.8",
-  "description": "OGS Keyboard Navigation to the max.",
+  "name": "go-kbd-nav",
+  "version": "1.0.0",
+  "description": "OGS Keyboard Navigation",
   "keywords": [
     "productivity",
     "keyboard",
@@ -13,7 +13,7 @@
     "바둑",
     "围棋"
   ],
-  "author": "Philippe Fanaro, Pascal von Fintel",
+  "author": "Pascal von Fintel",
   "license": "ISC",
   "main": "dist/content.js",
   "scripts": {
