@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Go Keyboard Navigation",
     "author": "Pascal von Fintel",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "OGS keyboard navigation to the max.",
     "content_scripts": [
         {
@@ -16,5 +16,15 @@
     ],
     "icons": {
         "128": "favicon.png"
+    },
+
+    "options_ui": {
+        "page": "options.html"
+    },
+    "permissions": ["storage"],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{d2e2bb2a-31fa-4ca4-9a56-5bd7157974df}"
+        }
     }
 }

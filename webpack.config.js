@@ -1,6 +1,18 @@
 const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "**/*",
+          context: path.resolve(__dirname, "lib/src", "options"),
+          to: "./",
+        },
+      ],
+    }),
+  ],
   entry: "./lib/src/content.ts",
   devtool: "inline-source-map",
   module: {
