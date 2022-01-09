@@ -1,6 +1,6 @@
 {
   "name": "go-kbd-nav",
-  "version": "0.1.0",
+  "version": "0.1.9",
   "description": "OGS Keyboard Navigation",
   "keywords": [
     "productivity",
@@ -20,19 +20,28 @@
     "build": "webpack",
     "test": "jest ./dist/dev",
     "testwatch": "jest --watchAll ./dist/dev",
+    "web": "webpack -w",
     "run": "web-ext run --source-dir ./dist/prod",
     "webbuild": "web-ext build --source-dir ./dist/prod --overwrite-dest",
     "sign": "web-ext sign --api-key user:17187266:552 --api-secret a8304f03abf01ef6c0e2e740b1299eda2d06c33f773e1a56e30bc365f73d49cb --source-dir ./dist/prod"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
+    "@types/mousetrap": "^1.6.9",
     "copy-webpack-plugin": "^10.2.0",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.6",
     "ts-loader": "^8.3.0",
     "typescript": "^4.5.4",
     "web-ext": "^6.6.0",
+    "web-ext-plugin": "^1.5.0",
+    "webextension-polyfill": "^0.8.0",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "@types/webextension-polyfill": "^0.8.2",
+    "mousetrap": "^1.6.5",
+    "mousetrap-record": "^1.0.1"
   }
 }
