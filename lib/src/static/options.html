@@ -2,73 +2,96 @@
 
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
   </head>
 
-<body>
-  <form>
+  <body>
+    <p>
+      Press Record Shortcut to overwrite the current shortcut for a specific
+      action.
+      <br />
+      Press Reset to restore the default shortcuts.
+      <br />
+      Your shortcuts will be connected to your firefox account, and thus sync
+      between computers. After you change the shortcuts, reload any ogs tab you
+      have open in order to use the new keybinds
+      <br />
+      <br />
+      A shortcut can be any combination of modifer keys + a normal key, ex:
+      (shift+ctrl+e). Or a sequence of key presses, like (g i). Be aware that if
+      you have something bound to the first key of a sequence, it won't trigger
+      that action because it's listening for the next key
+    </p>
+    <form>
       <label>Global Switch</label>
-      <input disabled type="text" id="globalswitch" >
-      <button type="button", id="globalswitchbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="globalswitch" />
+      <button type="button" , id="globalswitchbutton">Record Shortcut</button>
+      <br />
       <label>Chat</label>
-      <input disabled type="text" id="chat" >
-      <button type="button", id="chatbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="chat" />
+      <button type="button" , id="chatbutton">Record Shortcut</button>
+      <br />
       <label>Overlay</label>
-      <input disabled type="text" id="overlay" >
-      <button type="button", id="overlaybutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="overlay" />
+      <button type="button" , id="overlaybutton">Record Shortcut</button>
+      <br />
       <label>Toggle Arrows Keys</label>
-      <input disabled type="text" id="arrowkeys" >
-      <button type="button", id="arrowkeysbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="arrowkeys" />
+      <button type="button" , id="arrowkeysbutton">Record Shortcut</button>
+      <br />
       <label>Move Up</label>
-      <input disabled type="text" id="moveup" >
-      <button type="button", id="moveupbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="moveup" />
+      <button type="button" , id="moveupbutton">Record Shortcut</button>
+      <br />
       <label>Move Left</label>
-      <input disabled type="text" id="moveleft" >
-      <button type="button", id="moveleftbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="moveleft" />
+      <button type="button" , id="moveleftbutton">Record Shortcut</button>
+      <br />
       <label>Move Down</label>
-      <input disabled type="text" id="movedown" >
-      <button type="button", id="movedownbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="movedown" />
+      <button type="button" , id="movedownbutton">Record Shortcut</button>
+      <br />
       <label>Move Right</label>
-      <input disabled type="text" id="moveright" >
-      <button type="button", id="moverightbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="moveright" />
+      <button type="button" , id="moverightbutton">Record Shortcut</button>
+      <br />
       <label>Click at marker</label>
-      <input disabled type="text" id="click" >
-      <button type="button", id="clickbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="click" />
+      <button type="button" , id="clickbutton">Record Shortcut</button>
+      <br />
       <label>Pass</label>
-      <input disabled type="text" id="pass" >
-      <button type="button", id="passbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="pass" />
+      <button type="button" , id="passbutton">Record Shortcut</button>
+      <br />
       <label>Cycle board sizes</label>
-      <input disabled type="text" id="cycle" >
-      <button type="button", id="cyclebutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="cycle" />
+      <button type="button" , id="cyclebutton">Record Shortcut</button>
+      <br />
       <label>Coord Input</label>
-      <input disabled type="text" id="input" >
-      <button type="button", id="inputbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="input" />
+      <button type="button" , id="inputbutton">Record Shortcut</button>
+      <br />
       <label>Submit (correspondence)</label>
-      <input disabled type="text" id="submit" >
-      <button type="button", id="submitbutton">Record Shortcut</button>
-      <br>
+      <input disabled type="text" id="submit" />
+      <button type="button" , id="submitbutton">Record Shortcut</button>
+      <br />
       <label>Submit (including in coord input)</label>
-      <input disabled type="text" id="globalsubmit" >
-      <button type="button", id="globalsubmitbutton">Record Shortcut</button>
-      <br>
-      <br>
-      <br>
+      <input disabled type="text" id="globalsubmit" />
+      <button type="button" , id="globalsubmitbutton">Record Shortcut</button>
+      <br />
+      <br />
+      <br />
       <label>Reset keybinds</label>
-      <button type="button", id="reset">Reset</button>
-  </form>
-  <script src="options.js"></script>
-</body>
+      <button type="button" , id="reset">Reset</button>
+    </form>
+    <!-- <p id="consol"></p> -->
 
+    <script src="options.js"></script>
+  </body>
 </html>
+
+<style>
+  input {
+    transition: background 0.25s;
+  }
+</style>
