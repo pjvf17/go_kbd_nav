@@ -59,6 +59,10 @@ export default class Kbd {
             Mousetrap.bind(res["shortcuts"][shortcut], this.play);
             break;
           }
+          case "globalsubmit": {
+            Mousetrap.bindGlobal(res["shortcuts"][shortcut], this.submit);
+            break;
+          }
           case "pass": {
             Mousetrap.bind(res["shortcuts"][shortcut], this.pass);
             break;
@@ -72,7 +76,7 @@ export default class Kbd {
             break;
           }
           case "submit": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.confirm);
+            Mousetrap.bind(res["shortcuts"][shortcut], this.submit);
             break;
           }
         }
@@ -91,16 +95,13 @@ export default class Kbd {
   };
 
   private toggleChatInput = (): void => {
+    this.ui.coordInputUi?.disable();
     this.ui.chat.toggleChatInput();
   };
 
   private pass = (): void => {
     this.ui.passButton.click();
   };
-
-  // private toggleAiReview = (): void => {
-  //   this.ui.aiReview.toggle();
-  // };
 
   private toggleCoordInput = (): void => {
     if (this.ui.coordInputUi === null) {
@@ -122,125 +123,35 @@ export default class Kbd {
     }
   };
 
-  // private keySwitch = (): void => {
-  //   // h: up
-  //   // t: down
-  //   // u: right
-  //   // e: left
-  //   // s: place
-  //   // n: coord input field
-  //   switch (this.kbdEvt.key) {
-  //     case "b":
-  //       this.toggleCanvas();
-  //       break;
-  //     case "m":
-  //       this.toggleChatInput();
-  //       break;
-  //     case "[":
-  //       this.pass();
-  //       break;
-  //     case "]":
-  //       this.toggleArrowKeys();
-  //       break;
-  //     case ";":
-  //       this.toggleAiReview();
-  //       break;
-  //     case "n":
-  //       if(this.anInputIsFocused) {
-  //         this.toggleCoordInput();
-  //       }
-  //       break;
-  //     case "t":
-  //       // Dvorak
-  //       this.moveUp();
-  //       this.cycleGobanSize();
-  //       break;
-  //     case "u":
-  //       this.moveRight();
-  //       break;
-  //     case "ArrowRight":
-  //       if (this.config.arrowKeysOn) this.moveRight();
-  //       break;
-  //     case "h":
-  //       this.moveDown();
-  //       break;
-  //     case "ArrowDown":
-  //       if (this.config.arrowKeysOn) this.moveDown();
-  //       break;
-  //     case "e":
-  //       this.moveLeft();
-  //       break;
-  //     case "ArrowLeft":
-  //       if (this.config.arrowKeysOn) this.moveLeft();
-  //       break;
-  //     case "ArrowUp":
-  //       if (this.config.arrowKeysOn) this.moveUp();
-  //       break;
-  //     case "Enter":
-  //       this.play();
-  //       break;
-  //     case "s":
-  //       this.play();
-  //       break;
-  //     case "E":
-  //       this.confirm();
-  //       break;
-  //     case "j":
-  //       if(!this.ui.coordInputUi?.isFocused) {
-  //         this.confirm();
-  //       }
-  //       break;
-  //     case "Escape":
-  //       this.ui.coordInputUi?.disable();
-  //       break;
-  //   }
-  // };
-
   private escape = ():void => {
     if (this.ui.chat.isFocused) {
       this.toggleChatInput();
     }
     this.ui.coordInputUi?.disable();
   };
-  private confirm = (): void => {
+
+  private submit = (): void => {
     this.ui.confirmMove.click();
     this.ui.coordInputUi?.disable();
-  };
-
-  private get anInputIsFocused(): boolean {
-    return !this.ui.chat.isFocused && !this.ui.coordInputUi?.isFocused;
-  }
+  }; 
 
   private moveRight = (): void => {
-    if (this.anInputIsFocused) this.ui.stoneMarkerUi?.move(Direction.right);
+    this.ui.stoneMarkerUi?.move(Direction.right);
   };
 
   private moveDown = (): void => {
-    if (this.anInputIsFocused) this.ui.stoneMarkerUi?.move(Direction.down);
+    this.ui.stoneMarkerUi?.move(Direction.down);
   };
 
   private moveLeft = (): void => {
-    if (this.anInputIsFocused) {
-      // Disabled this because I couldn't find a reason for it, and it was somehow causing me to pass whenever moving left in a review
-      // this.skipAnalysis();
-      this.ui.stoneMarkerUi?.move(Direction.left);
-    }
+    this.ui.stoneMarkerUi?.move(Direction.left);
   };
 
-  // private skipAnalysis = (): void => {
-  //   const backToGameButtonQuery: string =
-  //     "div.analyze-mode-buttons > span > button";
-  //   const backToGameButton: HTMLButtonElement = document.querySelector(
-  //     backToGameButtonQuery
-  //   ) as HTMLButtonElement;
-  //   backToGameButton?.click();
-  // };
-
   private moveUp = (): void => {
-    if (this.anInputIsFocused) this.ui.stoneMarkerUi?.move(Direction.up);
+    this.ui.stoneMarkerUi?.move(Direction.up);
   };
 
   private play = (): void => {
-    if (this.anInputIsFocused) this.ui.stoneMarkerUi?.click();
+    this.ui.stoneMarkerUi?.click();
   };
 }
