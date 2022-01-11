@@ -5,7 +5,7 @@ var Mousetrap = require("mousetrap-record")(require("mousetrap"));
 
 const recordSequence = async (
   elem: HTMLInputElement,
-  shortcuts: { [index: HTMLInputElement["id"]]: string },
+  shortcuts: { [index: string]: string },
 ) => {
   await Mousetrap.record(async function (sequence: string[]) {
     // sequence is an array like ['ctrl+k', 'c']
@@ -17,8 +17,9 @@ const recordSequence = async (
 };
 
 const checkDuplicates = (shortcuts: { [index: string]: string }) => {
-  let seen: { [index: HTMLInputElement["id"]]: string[] } = {};
+  let seen: { [index: string]: string[] } = {};
   for (let inputID in shortcuts) {
+    // Reset all input colors
     let input = document.getElementById(inputID) as HTMLInputElement;
     input.style.backgroundColor = "";
     if (seen[shortcuts[inputID]] !== undefined) {
@@ -27,6 +28,8 @@ const checkDuplicates = (shortcuts: { [index: string]: string }) => {
       seen[shortcuts[inputID]] = [inputID];
     }
   }
+  // Loop through shortcuts, if the amount of elements with the same number
+  // Of shortcuts is > 1, turn them red
   for (let e in seen) {
     if (seen[e].length > 1) {
       seen[e].forEach((el) => {
@@ -60,6 +63,7 @@ const main = async () => {
   // If reset button is pressed, call reset and then run main again to refresh keys
   resetButton?.addEventListener("click", () =>
     reset().then(() => {
+      // TODO: Check if still needed
       inputs.forEach((input) => input.style.backgroundColor = "");
       main();
     }));
