@@ -78,7 +78,7 @@ The extension has its logo right next to OGS' when active. At first, the extensi
 | <kbd>j</kbd>                      | Press the submit button<sup>4</sup>                             |
 | <kbd>Shift</kbd> + <kbd>e</kbd>   | Press the submit button (even in coordinate input) <sup>4</sup> |
 
-<sub>1: Using the left arrow also may activate analysis during the game, so I'm currently programmatically pressing the <kbd>Back to game</kbd> button in the background.</sub>
+<sub>1: Using the arrow keys also activates analysis during the game, so I'm currently programmatically pressing the <kbd>Back to game</kbd> button in the background. This causes flashing on the right side of the screen</sub>
 \
 <sub>2: The extension has no way of identifying that you're on a smaller Goban size &mdash; only 19x19, 13x13 and 9x9 sizes are currently supported &mdash; so you will have to use this shortcut in order to manually achieve what you're looking for. And toggling to the right size is also necessary for the coordinates input field to work properly.</sub>
 \

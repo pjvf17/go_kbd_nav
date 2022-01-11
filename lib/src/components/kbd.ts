@@ -6,7 +6,6 @@ import Browser from "webextension-polyfill";
 import Mousetrap from "mousetrap";
 import "mousetrap/plugins/global-bind/mousetrap-global-bind.js";
 
-
 export default class Kbd {
   private kbdEvt: KeyboardEvent = new KeyboardEvent("keypress");
   private config: Config = Config.default();
@@ -15,6 +14,10 @@ export default class Kbd {
   constructor() {
     // Turn on logo
     this.ui.logo.toggle();
+    this.mousetrapSetup();
+  }
+
+  private mousetrapSetup = (): void => {
     // Always bind escape
     Mousetrap.bindGlobal("esc", this.escape);
     // Loop through shortcuts and bind each one to it's appropriate action
@@ -27,8 +30,11 @@ export default class Kbd {
             break;
           }
           case "chat": {
-            // Global so you can exit with same keybind
-            Mousetrap.bindGlobal(res["shortcuts"][shortcut], this.toggleChatInput);
+            // This is global so you can exit chat with same keybind
+            Mousetrap.bindGlobal(
+              res["shortcuts"][shortcut],
+              this.toggleChatInput,
+            );
             break;
           }
           case "overlay": {
@@ -82,7 +88,7 @@ export default class Kbd {
         }
       }
     });
-  }
+  };
 
   private globalToggle = (): void => {
     this.config = this.config.toggleGlobalSwitch();
@@ -113,6 +119,29 @@ export default class Kbd {
 
   private toggleArrowKeys = (): void => {
     this.config = this.config.toggleArrowKeys();
+    if (this.config.arrowKeysOn) {
+      Mousetrap.bind("up", () => {
+        this.skipAnalysis();
+        this.moveUp();
+      });
+      Mousetrap.bind("left", () => {
+        this.skipAnalysis();
+        this.moveLeft();
+      });
+      Mousetrap.bind("down", () => {
+        this.skipAnalysis();
+        this.moveDown();
+      });
+      Mousetrap.bind("right", () => {
+        this.skipAnalysis();
+        this.moveRight();
+      });
+    } else {
+      Mousetrap.unbind("up");
+      Mousetrap.unbind("left");
+      Mousetrap.unbind("down");
+      Mousetrap.unbind("right");
+    }
   };
 
   private cycleGobanSize = (): void => {
@@ -123,7 +152,7 @@ export default class Kbd {
     }
   };
 
-  private escape = ():void => {
+  private escape = (): void => {
     if (this.ui.chat.isFocused) {
       this.toggleChatInput();
     }
@@ -133,7 +162,7 @@ export default class Kbd {
   private submit = (): void => {
     this.ui.confirmMove.click();
     this.ui.coordInputUi?.disable();
-  }; 
+  };
 
   private moveRight = (): void => {
     this.ui.stoneMarkerUi?.move(Direction.right);
@@ -145,6 +174,15 @@ export default class Kbd {
 
   private moveLeft = (): void => {
     this.ui.stoneMarkerUi?.move(Direction.left);
+  };
+
+  private skipAnalysis = (): void => {
+    const backToGameButtonQuery: string =
+      "div.analyze-mode-buttons > span > button";
+    const backToGameButton: HTMLButtonElement = document.querySelector(
+      backToGameButtonQuery,
+    ) as HTMLButtonElement;
+    backToGameButton?.click();
   };
 
   private moveUp = (): void => {

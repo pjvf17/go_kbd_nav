@@ -21,7 +21,7 @@
     "test": "jest ./dist/dev",
     "testwatch": "jest --watchAll ./dist/dev",
     "web": "webpack -w",
-    "run": "web-ext run --source-dir ./dist/prod",
+    "fire": "web-ext run --source-dir ./dist/prod",
     "webbuild": "web-ext build --source-dir ./dist/prod --overwrite-dest",
     "sign": "web-ext sign --api-key user:17187266:552 --api-secret a8304f03abf01ef6c0e2e740b1299eda2d06c33f773e1a56e30bc365f73d49cb --source-dir ./dist/prod"
   },
