@@ -52,7 +52,7 @@ At first I didn't believe any of the benefits above, but, after trying it out fo
 ## 3. Table of Shortcuts
 
 > **This extension currently only works if you have *all* the coordinates turned on.**
-
+>
 > You might experience the extension not working when you transition to a game page. In that case, simply refresh the page and it will most likely work again.
 
 If you don't want conflict with OGS' UI, prefer the WASD keys instead of the arrow keys. The arrow keys are disabled by default, so they won't bother you initially.
