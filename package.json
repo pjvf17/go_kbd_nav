@@ -23,6 +23,7 @@
     "web": "webpack -w",
     "fire": "web-ext run --source-dir ./dist/prod",
     "webbuild": "web-ext build --source-dir ./dist/prod --overwrite-dest",
+    "sign": "./sign.sh"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",

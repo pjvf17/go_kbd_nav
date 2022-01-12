@@ -1,5 +1,6 @@
 # Things that should not be tracked in general
 node_modules/
+*.env
 
 # TS-JS compilation unnecessary stuff
 dist/*
@@ -7,3 +8,6 @@ dist/*
 dist/prod/*
 !dist/prod/manifest.json
 !dist/prod/favicon.png
+
+# Web-ext
+web-ext-artifacts/
