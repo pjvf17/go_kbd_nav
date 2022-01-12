@@ -128,31 +128,31 @@ Hope to get this extension on the stores soon
 ### 4.2. From a Github Release
 
 1. Go to the [releases](https://github.com/pjvf17/go_kbd_nav/releases) page.
+2. Download the latest release's ZIP folder.
 
 #### 4.2.1. Google Chrome
 
-1. Download the latest release's ZIP folder.
-2. Unzip the extension in a local folder.
-3. Go to [chrome://extensions/][chrome_extensions]
-4. Activate <kbd>Developer mode</kbd> on the upper-right corner.
-5. Click on <kbd>Load unpacked</kbd> and choose the folder where you unzipped the extension.
+1. Unzip the extension in a local folder.
+2. Go to [chrome://extensions/][chrome_extensions]
+3. Activate <kbd>Developer mode</kbd> on the upper-right corner.
+4. Click on <kbd>Load unpacked</kbd> and choose the folder where you unzipped the extension.
 
 [chrome_extensions]: chrome://extensions/
 
 #### 4.2.2. Firefox
 
-1. Download the latest release's an+fx.xpi file
-2. Go to [about:addons](about:addons)
-3. Click on the gear in the top right corner
-4. Click on <kbd>Install Add-On from file </kbd> and select the downloaded file
+1. Go to [about:debugging][about_debugging]
+2. Click on <kbd>This Firefox</kbd>.
+3. Click on <kbd>Load Temporary Add-on...</kbd> and load the zip file directly.
+
+[about_debugging]: about:debugging
 
 #### 4.2.3. Microsoft Edge
 
-1. Download the latest release's ZIP folder.
-2. Unzip the extension in a local folder.
-3. Go to [edge://extensions][edge_extensions]
-4. Activate <kbd>Developer mode</kbd> on the lower-left corner.
-5. Click on <kbd>Load unpacked</kbd> and choose the folder where you unzipped the extension.
+1. Unzip the extension in a local folder.
+2. Go to [edge://extensions][edge_extensions]
+3. Activate <kbd>Developer mode</kbd> on the lower-left corner.
+4. Click on <kbd>Load unpacked</kbd> and choose the folder where you unzipped the extension.
 
 [edge_extensions]: edge://extensions/
 

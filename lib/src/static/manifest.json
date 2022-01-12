@@ -1,32 +1,28 @@
 {
-    "manifest_version": 2,
-    "name": "Go Keyboard Navigation",
-    "author": "Pascal von Fintel",
-    "version": "1.0.0",
-    "description": "OGS keyboard navigation to the max.",
-    "content_scripts": [
-        {
-            "matches": [
-                "*://*.online-go.com/*"
-            ],
-            "js": [
-                "content.js"
-            ]
-        }
-    ],
-    "background": {
-        "scripts": ["default.js"]
-    },
-    "icons": {
-        "128": "favicon.png"
-    },
-    "permissions": ["storage"],
-    "options_ui": {
-        "page": "options.html"
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "{d2e2bb2a-31fa-4ca4-9a56-5bd7157974df}"
-        }
+  "manifest_version": 2,
+  "name": "Go Keyboard Navigation",
+  "author": "Pascal von Fintel",
+  "version": "1.0.1",
+  "description": "OGS keyboard navigation to the max.",
+  "content_scripts": [
+    {
+      "matches": ["*://*.online-go.com/*"],
+      "js": ["content.js"]
     }
+  ],
+  "background": {
+    "scripts": ["default.js"]
+  },
+  "icons": {
+    "128": "favicon.png"
+  },
+  "permissions": ["storage"],
+  "options_ui": {
+    "page": "options.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{d2e2bb2a-31fa-4ca4-9a56-5bd7157974df}"
+    }
+  }
 }
