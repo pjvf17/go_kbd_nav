@@ -9,11 +9,11 @@ const defaults = async () => {
     shortcuts["chat"] = "ctrl+m";
     shortcuts["overlay"] = "ctrl+b";
     shortcuts["arrowkeys"] = "ctrl+]";
-    shortcuts["moveup"] = "t";
-    shortcuts["moveleft"] = "e";
-    shortcuts["movedown"] = "h";
-    shortcuts["moveright"] = "u";
-    shortcuts["click"] = "s";
+    shortcuts["moveup"] = "w";
+    shortcuts["moveleft"] = "a";
+    shortcuts["movedown"] = "s";
+    shortcuts["moveright"] = "d";
+    shortcuts["click"] = "enter";
     shortcuts["globalsubmit"] = "shift+e";
     shortcuts["pass"] = "ctrl+[";
     shortcuts["cycle"] = "ctrl+,";

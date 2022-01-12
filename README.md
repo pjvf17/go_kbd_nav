@@ -71,7 +71,7 @@ The extension has its logo right next to OGS' when active. At first, the extensi
 | <kbd>a</kbd> or <kbd>&larr;</kbd> | Move the stone marker left<sup>1</sup>                          |
 | <kbd>s</kbd> or <kbd>&darr;</kbd> | Move the stone marker down                                      |
 | <kbd>d</kbd> or <kbd>&rarr;</kbd> | Move the stone marker right                                     |
-| <kbd>Enter</kbd> or <kbd>f</kbd>  | Click on the stone marker's location                            |
+| <kbd>Enter</kbd>                  | Click on the stone marker's location                            |
 | <kbd>Ctrl</kbd> + <kbd>[</kbd>    | Pass                                                            |
 | <kbd>Ctrl</kbd> + <kbd>,</kbd>    | Cycle through the different board sizes<sup>2</sup>             |
 | <kbd>Ctrl</kbd> +  <kbd>.</kbd>   | Toggle the coordinates input field<sup>3</sup>                  |
