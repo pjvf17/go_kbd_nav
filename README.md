@@ -77,6 +77,7 @@ The extension has its logo right next to OGS' when active. At first, the extensi
 | <kbd>Ctrl</kbd> +  <kbd>.</kbd>   | Toggle the coordinates input field<sup>3</sup>                  |
 | <kbd>j</kbd>                      | Press the submit button<sup>4</sup>                             |
 | <kbd>Shift</kbd> + <kbd>e</kbd>   | Press the submit button (even in coordinate input) <sup>4</sup> |
+| <kbd>Escape</kbd>                 | Exit coordinates input or chat (not configurable)               |
 
 <sub>1: Using the arrow keys also activates analysis during the game, so I'm currently programmatically pressing the <kbd>Back to game</kbd> button in the background. This causes flashing on the right side of the screen</sub>
 \

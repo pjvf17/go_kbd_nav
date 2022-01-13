@@ -14,11 +14,11 @@ const defaults = async () => {
     shortcuts["movedown"] = "s";
     shortcuts["moveright"] = "d";
     shortcuts["click"] = "enter";
-    shortcuts["globalsubmit"] = "shift+e";
     shortcuts["pass"] = "ctrl+[";
     shortcuts["cycle"] = "ctrl+,";
-    shortcuts["input"] = "n";
+    shortcuts["input"] = "ctrl+.";
     shortcuts["submit"] = "j";
+    shortcuts["globalsubmit"] = "shift+e";
     await Browser.storage.sync.set({ shortcuts });
   }
 };

@@ -63,8 +63,6 @@ const main = async () => {
   // If reset button is pressed, call reset and then run main again to refresh keys
   resetButton?.addEventListener("click", () =>
     reset().then(() => {
-      // TODO: Check if still needed
-      inputs.forEach((input) => input.style.backgroundColor = "");
       main();
     }));
 };
