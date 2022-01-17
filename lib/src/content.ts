@@ -1,5 +1,4 @@
 import Kbd from "./components/kbd";
 
-// Default 
-
+// Default
 new Kbd();

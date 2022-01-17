@@ -3,6 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const WebExtPlugin = require("web-ext-plugin");
 
 module.exports = {
+  target: "electron-renderer",
   plugins: [
     // new CopyPlugin({
     //   patterns: [
@@ -14,13 +15,14 @@ module.exports = {
     //   ],
     // }),
     new CopyPlugin({
-      patterns: [{ from: 'lib/src/static' }],
+      patterns: [{ from: "lib/src/static" }],
     }),
   ],
-  entry: { 
-    content: "./lib/src/content.ts", 
+  entry: {
+    content: "./lib/src/content.ts",
     options: "./lib/src/options.ts",
-    default: "./lib/src/default.ts"
+    default: "./lib/src/default.ts",
+    main: "./lib/src/main.ts",
   },
   devtool: "inline-source-map",
   module: {
