@@ -1,5 +1,6 @@
 import { GobanSize } from "../components/config";
 import StoneMarker from "../components/stone_marker";
+// https://stackoverflow.com/questions/44391448/electron-require-is-not-defined
 
 export enum Direction {
   right,
@@ -11,12 +12,12 @@ export enum Direction {
 export default class StoneMarkerUi {
   static readonly shadowCanvasQuery: string =
     "div.Goban > div > canvas#shadow-canvas";
-  private static readonly defaultCanvasSize: number = 504;
+  private static readonly defaultCanvasSize: number = 465;
 
   private gobanSize: GobanSize = GobanSize.full19x19;
   private stoneMarker: StoneMarker = new StoneMarker();
   private stoneMarkerCanvas: HTMLCanvasElement = document.createElement(
-    "canvas"
+    "canvas",
   ) as HTMLCanvasElement;
   private _canvasOn: boolean = false;
 
@@ -38,6 +39,7 @@ export default class StoneMarkerUi {
     }
     this._canvasOn = !this._canvasOn;
     this.draw();
+    this.drawInCorners();
   };
 
   private configureStoneMarker = (): void => {
@@ -54,25 +56,20 @@ export default class StoneMarkerUi {
     document.getElementById("stone-marker")?.remove();
 
   private configureStoneMarkerCanvas = (): void => {
-    const shadowCanvas: HTMLCanvasElement = document.querySelector(
-      StoneMarkerUi.shadowCanvasQuery
-    ) as HTMLCanvasElement;
-    const width: number = parseInt(shadowCanvas.style.width);
-    const height: number = parseInt(shadowCanvas.style.height);
+    let width = document.querySelector("body")?.clientWidth as number;
+    let height = document.querySelector("body")?.clientHeight as number;
 
     this.stoneMarkerCanvas.id = "stone-marker";
     this.stoneMarkerCanvas.style.zIndex = "21";
     this.stoneMarkerCanvas.style.position = "absolute";
-    this.stoneMarkerCanvas.style.borderBottom = "red solid";
+    // this.stoneMarkerCanvas.style.borderBottom = "red solid";
     this.stoneMarkerCanvas.width = width;
     this.stoneMarkerCanvas.height = height;
   };
 
   private appendStoneMarkerCanvas = (): void => {
-    const gobanDiv: HTMLDivElement = document.querySelector(
-      "div.Goban > div"
-    ) as HTMLDivElement;
-    gobanDiv.append(this.stoneMarkerCanvas);
+    let body = document.querySelector("body") as HTMLBodyElement;
+    body.append(this.stoneMarkerCanvas);
   };
 
   private clear = (): void =>
@@ -82,7 +79,7 @@ export default class StoneMarkerUi {
         0,
         0,
         this.stoneMarkerCanvas.width,
-        this.stoneMarkerCanvas.height
+        this.stoneMarkerCanvas.height,
       );
 
   move = (direction: Direction): void => {
@@ -110,20 +107,41 @@ export default class StoneMarkerUi {
 
   private draw = (): void => {
     const context: CanvasRenderingContext2D = this.stoneMarkerCanvas.getContext(
-      "2d"
+      "2d",
     )!;
 
+    console.log(context);
+    console.log(this.stoneMarker);
     context.beginPath();
     context.arc(
       this.stoneMarker.x,
       this.stoneMarker.y,
       this.stoneMarker.radius,
       0,
-      2 * Math.PI
+      2 * Math.PI,
     );
     context.lineWidth = 3;
     context.strokeStyle = "green";
     context.stroke();
+    // ipcRenderer.invoke('getBounds').then((result) => {
+    //   console.log(result)
+    // })
+  };
+
+  private drawInCorners = (): void => {
+    // Go to bottom left
+    for (let i = 1; i <= 19; i++) {
+      this.stoneMarker = this.stoneMarker.moveDown();
+    }
+    this.draw();
+    for (let i = 1; i <= 19; i++) {
+      this.stoneMarker = this.stoneMarker.moveRight();
+    }
+    this.draw();
+    for (let i = 1; i <= 19; i++) {
+      this.stoneMarker = this.stoneMarker.moveUp();
+    }
+    this.draw();
   };
 
   click = (): void => {
@@ -132,27 +150,32 @@ export default class StoneMarkerUi {
       .top;
     const leftOffset: number = this.stoneMarkerCanvas.getBoundingClientRect()
       .left;
-    clickEvent.initMouseEvent(
-      "click",
-      true,
-      true,
-      window,
-      0,
-      0,
-      0,
-      this.stoneMarker.x + leftOffset,
-      this.stoneMarker.y + topOffset,
-      false,
-      false,
-      false,
-      false,
-      0,
-      null
-    );
+    // clickEvent.initMouseEvent(
+    //   "click",
+    //   true,
+    //   true,
+    //   window,
+    //   0,
+    //   0,
+    //   0,
+    //   this.stoneMarker.x + leftOffset,
+    //   this.stoneMarker.y + topOffset,
+    //   false,
+    //   false,
+    //   false,
+    //   false,
+    //   0,
+    //   null,
+    // );
+
+    window.api.click("click", {
+      x: this.stoneMarker.x + leftOffset,
+      y: this.stoneMarker.y + topOffset,
+    });
 
     const gameCanvasQuery: string = "div.Goban > div > canvas#board-canvas";
     const gameCanvas: HTMLCanvasElement = document.querySelector(
-      gameCanvasQuery
+      gameCanvasQuery,
     ) as HTMLCanvasElement;
 
     gameCanvas?.dispatchEvent(clickEvent);

@@ -2,9 +2,9 @@ import { Direction } from "../ui/stone_marker_ui";
 import Ui from "../ui/ui";
 import Config from "./config";
 import CoordInputUi from "../ui/coord_input_ui";
-import Browser from "webextension-polyfill";
 import Mousetrap from "mousetrap";
 import "mousetrap/plugins/global-bind/mousetrap-global-bind.js";
+import shortcuts from "../default"
 
 export default class Kbd {
   private kbdEvt: KeyboardEvent = new KeyboardEvent("keypress");
@@ -13,7 +13,7 @@ export default class Kbd {
 
   constructor() {
     // Turn on logo
-    this.ui.logo.toggle();
+    // this.ui.logo.toggle();
     this.mousetrapSetup();
   }
 
@@ -21,73 +21,71 @@ export default class Kbd {
     // Always bind escape
     Mousetrap.bindGlobal("esc", this.escape);
     // Loop through shortcuts and bind each one to it's appropriate action
-    Browser.storage.sync.get("shortcuts").then((res) => {
-      console.log(res["shortcuts"]);
-      for (let shortcut in res["shortcuts"]) {
-        switch (shortcut) {
-          case "globalswitch": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.globalToggle);
-            break;
-          }
-          case "chat": {
-            // This is global so you can exit chat with same keybind
-            Mousetrap.bindGlobal(
-              res["shortcuts"][shortcut],
-              this.toggleChatInput,
-            );
-            break;
-          }
-          case "overlay": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.toggleCanvas);
-            break;
-          }
-          case "arrowkeys": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.toggleArrowKeys);
-            break;
-          }
-          case "moveup": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.moveUp);
-            break;
-          }
-          case "moveleft": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.moveLeft);
-            break;
-          }
-          case "movedown": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.moveDown);
-            break;
-          }
-          case "moveright": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.moveRight);
-            break;
-          }
-          case "click": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.play);
-            break;
-          }
-          case "globalsubmit": {
-            Mousetrap.bindGlobal(res["shortcuts"][shortcut], this.submit);
-            break;
-          }
-          case "pass": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.pass);
-            break;
-          }
-          case "cycle": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.cycleGobanSize);
-            break;
-          }
-          case "input": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.toggleCoordInput);
-            break;
-          }
-          case "submit": {
-            Mousetrap.bind(res["shortcuts"][shortcut], this.submit);
-            break;
-          }
+
+    for (let shortcut in shortcuts) {
+      switch (shortcut) {
+        case "globalswitch": {
+          Mousetrap.bind(shortcuts[shortcut], this.globalToggle);
+          break;
+        }
+        case "chat": {
+          // This is global so you can exit chat with same keybind
+          Mousetrap.bindGlobal(
+            shortcuts[shortcut],
+            this.toggleChatInput,
+          );
+          break;
+        }
+        case "overlay": {
+          Mousetrap.bind(shortcuts[shortcut], this.toggleCanvas);
+          break;
+        }
+        case "arrowkeys": {
+          Mousetrap.bind(shortcuts[shortcut], this.toggleArrowKeys);
+          break;
+        }
+        case "moveup": {
+          Mousetrap.bind(shortcuts[shortcut], this.moveUp);
+          break;
+        }
+        case "moveleft": {
+          Mousetrap.bind(shortcuts[shortcut], this.moveLeft);
+          break;
+        }
+        case "movedown": {
+          Mousetrap.bind(shortcuts[shortcut], this.moveDown);
+          break;
+        }
+        case "moveright": {
+          Mousetrap.bind(shortcuts[shortcut], this.moveRight);
+          break;
+        }
+        case "click": {
+          Mousetrap.bind(shortcuts[shortcut], this.play);
+          break;
+        }
+        case "globalsubmit": {
+          Mousetrap.bindGlobal(shortcuts[shortcut], this.submit);
+          break;
+        }
+        case "pass": {
+          Mousetrap.bind(shortcuts[shortcut], this.pass);
+          break;
+        }
+        case "cycle": {
+          Mousetrap.bind(shortcuts[shortcut], this.cycleGobanSize);
+          break;
+        }
+        case "input": {
+          Mousetrap.bind(shortcuts[shortcut], this.toggleCoordInput);
+          break;
+        }
+        case "submit": {
+          Mousetrap.bind(shortcuts[shortcut], this.submit);
+          break;
         }
       }
-    });
+    }
   };
 
   private globalToggle = (): void => {

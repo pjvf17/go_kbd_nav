@@ -23,6 +23,7 @@ module.exports = {
     options: "./lib/src/options.ts",
     default: "./lib/src/default.ts",
     main: "./lib/src/main.ts",
+    preload: "./lib/src/preload.ts",
   },
   devtool: "inline-source-map",
   module: {

@@ -2,7 +2,7 @@ import { GobanSize } from "./config";
 
 export default class StoneMarker {
   constructor(
-    private readonly data: StoneMarkerData = StoneMarkerData.default()
+    private readonly data: StoneMarkerData = StoneMarkerData.default(),
   ) {}
 
   get radius(): number {
@@ -40,8 +40,8 @@ export default class StoneMarker {
   moveRight = (): StoneMarker =>
     this.notRightEdge
       ? new StoneMarker(
-          this.data.copyWithX(this.x + this.step, this.data.gobanX + 1)
-        )
+        this.data.copyWithX(this.x + this.step, this.data.gobanX + 1),
+      )
       : this;
 
   private get notLowerEdge(): boolean {
@@ -52,8 +52,8 @@ export default class StoneMarker {
   moveDown = (): StoneMarker =>
     this.notLowerEdge
       ? new StoneMarker(
-          this.data.copyWithY(this.y + this.step, this.data.gobanY - 1)
-        )
+        this.data.copyWithY(this.y + this.step, this.data.gobanY - 1),
+      )
       : this;
 
   private get notLeftEdge(): boolean {
@@ -64,8 +64,8 @@ export default class StoneMarker {
   moveLeft = (): StoneMarker =>
     this.notLeftEdge
       ? new StoneMarker(
-          this.data.copyWithX(this.x - this.step, this.data.gobanX - 1)
-        )
+        this.data.copyWithX(this.x - this.step, this.data.gobanX - 1),
+      )
       : this;
 
   private get notTopEdge(): boolean {
@@ -76,20 +76,23 @@ export default class StoneMarker {
   moveUp = (): StoneMarker =>
     this.notTopEdge
       ? new StoneMarker(
-          this.data.copyWithY(this.y - this.step, this.data.gobanY + 1)
-        )
+        this.data.copyWithY(this.y - this.step, this.data.gobanY + 1),
+      )
       : this;
 
   static changeRatio = (
     ratio: number,
-    gobanSize: GobanSize = GobanSize.full19x19
+    gobanSize: GobanSize = GobanSize.full19x19,
   ): StoneMarker =>
     new StoneMarker(StoneMarkerData.fromRatio(ratio, gobanSize));
+
+  static changeRadius = (radius: number): StoneMarker =>
+    new StoneMarker(StoneMarkerData.fromRadius(radius));
 
   static fromCoordinates = (
     coord: string,
     ratio: number = 1,
-    gobanSize: GobanSize = GobanSize.full19x19
+    gobanSize: GobanSize = GobanSize.full19x19,
   ): StoneMarker => {
     const preGobanX: number = coord.match("[a-t]")![0].charCodeAt(0) - 96;
     let gobanX: number = preGobanX > 8 ? preGobanX - 1 : preGobanX;
@@ -119,8 +122,10 @@ export default class StoneMarker {
 
 export class StoneMarkerData {
   private static readonly default19x19RadiusDxDy = 8;
-  private static readonly default19x19X = 35.75;
-  private static readonly default19x19Y = 467.75;
+  // private static readonly default19x19X = 35.75;
+  // private static readonly default19x19Y = 467.75;
+  private static readonly default19x19X = 15;
+  private static readonly default19x19Y = 15;
 
   private static readonly default13x13Radius = 11;
   private static readonly default13x13DxDy = 11.5875;
@@ -133,7 +138,7 @@ export class StoneMarkerData {
   private static readonly default9x9Y = 435;
 
   static default = (
-    gobanSize: GobanSize = GobanSize.full19x19
+    gobanSize: GobanSize = GobanSize.full19x19,
   ): StoneMarkerData => {
     switch (gobanSize) {
       case GobanSize.full19x19:
@@ -146,7 +151,7 @@ export class StoneMarkerData {
           StoneMarkerData.default13x13Y,
           1,
           1,
-          GobanSize.medium13x13
+          GobanSize.medium13x13,
         );
       case GobanSize.small9x9:
         return new StoneMarkerData(
@@ -156,14 +161,14 @@ export class StoneMarkerData {
           StoneMarkerData.default9x9Y,
           1,
           1,
-          GobanSize.small9x9
+          GobanSize.small9x9,
         );
     }
   };
 
   static fromRatio = (
     ratio: number,
-    gobanSize: GobanSize = GobanSize.full19x19
+    gobanSize: GobanSize = GobanSize.full19x19,
   ): StoneMarkerData => {
     switch (gobanSize) {
       case GobanSize.full19x19:
@@ -171,7 +176,7 @@ export class StoneMarkerData {
           ratio * StoneMarkerData.default19x19RadiusDxDy,
           ratio * StoneMarkerData.default19x19RadiusDxDy,
           ratio * StoneMarkerData.default19x19X,
-          ratio * StoneMarkerData.default19x19Y
+          ratio * StoneMarkerData.default19x19Y,
         );
       case GobanSize.medium13x13:
         return new StoneMarkerData(
@@ -181,7 +186,7 @@ export class StoneMarkerData {
           ratio * StoneMarkerData.default13x13Y,
           1,
           1,
-          GobanSize.medium13x13
+          GobanSize.medium13x13,
         );
       case GobanSize.small9x9:
         return new StoneMarkerData(
@@ -191,18 +196,30 @@ export class StoneMarkerData {
           ratio * StoneMarkerData.default9x9Y,
           1,
           1,
-          GobanSize.small9x9
+          GobanSize.small9x9,
         );
     }
   };
+
+  static fromRadius = (
+    radius: number,
+  ): StoneMarkerData => {
+    return new StoneMarkerData(
+      radius,
+      radius,
+      StoneMarkerData.default19x19X,
+      StoneMarkerData.default19x19Y,
+    );
+  };
+
   private constructor(
     readonly radius: number = StoneMarkerData.default19x19RadiusDxDy,
     readonly dxdy: number = StoneMarkerData.default19x19RadiusDxDy,
     readonly x: number = StoneMarkerData.default19x19X,
     readonly y: number = StoneMarkerData.default19x19Y,
     readonly gobanX: number = 1,
-    readonly gobanY: number = 1,
-    readonly gobanSize: GobanSize = GobanSize.full19x19
+    readonly gobanY: number = 19,
+    readonly gobanSize: GobanSize = GobanSize.full19x19,
   ) {}
 
   get diameter(): number {
@@ -217,7 +234,7 @@ export class StoneMarkerData {
       this.y,
       newGobanX,
       this.gobanY,
-      this.gobanSize
+      this.gobanSize,
     );
 
   copyWithY = (newY: number, newGobanY: number) =>
@@ -228,6 +245,6 @@ export class StoneMarkerData {
       newY,
       this.gobanX,
       newGobanY,
-      this.gobanSize
+      this.gobanSize,
     );
 }

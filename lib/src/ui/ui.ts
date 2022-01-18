@@ -35,9 +35,9 @@ export default class Ui {
   // Found this worked better than onLoad, which wasn't triggering and generating the canvas
   private onInit = () => {
     const checkExist: NodeJS.Timeout = setInterval(() => {
-      if (document.querySelector(StoneMarkerUi.shadowCanvasQuery) != null) {
+      if (document.querySelector("body") != null) {
         this.stoneMarkerUi = new StoneMarkerUi();
-        this.coordInputUi = new CoordInputUi();
+        // this.coordInputUi = new CoordInputUi();
         clearInterval(checkExist);
       }
     }, 100);

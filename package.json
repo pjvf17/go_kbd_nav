@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@types/webextension-polyfill": "^0.8.2",
+    "applescript": "^1.0.0",
     "mousetrap": "^1.6.5",
     "mousetrap-record": "^1.0.1"
   }
