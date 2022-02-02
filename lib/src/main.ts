@@ -37,7 +37,6 @@ ipcMain.on("click", (_, data: { x: number; y: number }) => {
   data.x = Math.round(data.x);
   data.y = Math.round(data.y);
   console.log(data);
-  exec(`cliclick c:${data.x},${data.y}`);
-  exec(`cliclick c:${data.x},${data.y}`);
+  exec(`cliclick dc:${data.x},${data.y}`);
   exec("osascript -e 'tell app \"Electron\" to activate'");
 });
